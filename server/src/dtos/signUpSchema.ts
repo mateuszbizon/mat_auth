@@ -5,7 +5,7 @@ export const signUpSchema = z.object({
     name: z.string().min(USER_NAME_MIN_LENGTH, USER_NAME_LENGTH_MESSAGE),
     username: z.string().min(USERNAME_MIN_LENGTH, USERNAME_LENGTH_MESSAGE).max(USERNAME_MAX_LENGTH, USERNAME_LENGTH_MESSAGE)
         .refine(value => {
-            return NO_WHITESPACE_REGEX.test(value)
+            return !NO_WHITESPACE_REGEX.test(value)
         }, USERNAME_WHITESPACE_MESSAGE),
     email: z.string().email(EMAIL_MESSAGE),
     password: z.string().min(PASSWORD_MIN_LENGTH, PASSWORD_LENGTH_MESSAGE)
