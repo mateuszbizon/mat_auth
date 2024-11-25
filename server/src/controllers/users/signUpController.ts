@@ -6,6 +6,7 @@ import { MESSAGES } from "../../constants/messages";
 import { getUserByEmailService } from "../../services/users/getUserByEmailService";
 import bcrypt from "bcryptjs"
 import { createUserService } from "../../services/users/createUserService";
+import { MESSAGE_CODES } from "../../constants/messageCodes";
 
 export async function signUpController(req: Request<{}, {}, TSignUpSchema>, res: Response, next: NextFunction) {
     const { name, username, email, password } = req.body
@@ -14,19 +15,19 @@ export async function signUpController(req: Request<{}, {}, TSignUpSchema>, res:
         const validationResult = signUpSchema.safeParse(req.body)
 
         if (!validationResult.success) {
-            return next(new BadRequestError(validationResult.error.errors[0].message))
+            return next(new BadRequestError(validationResult.error.errors[0].message, MESSAGE_CODES.validationFail))
         }
 
         const existingUsername = await getUserByUsernameService(username)
 
         if (existingUsername) {
-            return next(new BadRequestError(MESSAGES.user.usernameTaken))
+            return next(new BadRequestError(MESSAGES.user.usernameTaken, MESSAGE_CODES.usernameTaken))
         }
 
         const existingEmail = await getUserByEmailService(email)
 
         if (existingEmail) {
-            return next(new BadRequestError(MESSAGES.user.emailTaken))
+            return next(new BadRequestError(MESSAGES.user.emailTaken, MESSAGE_CODES.emailTaken))
         }
 
         const hashedPassword = await bcrypt.hash(password, 12)
