@@ -4,7 +4,8 @@ export const MESSAGES = {
         emailTaken: "Email already taken",
     },
     auth: {
-        notAuthenticated: "User not authenticated"
+        notAuthenticated: "User not authenticated",
+        invalidCredentials: "Username or password incorrect"
     },
     database: {
         databaseFail: "Database problem"
