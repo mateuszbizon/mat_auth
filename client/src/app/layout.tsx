@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Montserrat } from "next/font/google"
 import Providers from "@/components/Providers";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,6 +26,13 @@ export default function RootLayout({
         className={`${montserrat.className}`}
       >
         <Providers>
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            draggable
+            closeOnClick
+            theme="colored"
+          />
           {children}
         </Providers>
       </body>

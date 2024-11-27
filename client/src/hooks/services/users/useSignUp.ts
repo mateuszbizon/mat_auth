@@ -1,7 +1,7 @@
 import { signUp } from '@/lib/services/userServices'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import { toast } from 'react-toastify'
 
 function useSignUp() {
     const router = useRouter()
@@ -11,7 +11,7 @@ function useSignUp() {
             router.push("/sign-in")
         },
         onError: () => {
-            console.log('something went wrong')
+            toast.error("something went wrong")
         }
     })
 
