@@ -7,8 +7,10 @@ import { useForm } from 'react-hook-form'
 import { signInSchema, TSignInSchema } from '@/validations/signInSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../ui/button'
+import useSignIn from '@/hooks/services/users/useSignIn'
 
 function SignInForm() {
+    const { handleSignIn, isPending } = useSignIn()
     const form = useForm<TSignInSchema>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -19,6 +21,8 @@ function SignInForm() {
 
     function onSubmit(data: TSignInSchema) {
         console.log('sent data')
+
+        handleSignIn(data)
     }
 
   return (
@@ -42,17 +46,17 @@ function SignInForm() {
             control={form.control}
             name="password"
             render={({ field }) => (
-                <FormItem>
+              <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                    <Input type='password' placeholder="Password" {...field} />
+                  <Input type='password' placeholder="Password" {...field} />
                 </FormControl>
                 <FormMessage />
-                </FormItem>
+              </FormItem>
             )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>{isPending ? "Submitting..." : "Submit"}</Button>
       </form>
     </Form>
   )
