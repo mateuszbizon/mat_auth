@@ -7,8 +7,10 @@ import { useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
+import useSignUp from '@/hooks/services/users/useSignUp'
 
 function SignUpForm() {
+    const { handleSignup, isPending } = useSignUp()
     const form = useForm<TSignUpSchema>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
@@ -20,7 +22,9 @@ function SignUpForm() {
     })
 
     function onSubmit(data: TSignUpSchema) {
-        console.log(data)
+        console.log("sent data")
+
+        handleSignup(data)
     }
 
   return (
@@ -82,7 +86,7 @@ function SignUpForm() {
             )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>{isPending ? "Submitting..." : "Submit"}</Button>
       </form>
     </Form>
   )

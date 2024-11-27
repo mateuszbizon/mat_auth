@@ -14,6 +14,7 @@ const port = process.env.PORT || 3001
 
 app.use(bodyParser.json())
 app.use(cors({
+    origin: ["http://localhost:3000"],
     credentials: true,
 }))
 app.use(cookieParser())
