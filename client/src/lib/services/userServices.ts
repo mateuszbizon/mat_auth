@@ -13,3 +13,9 @@ export async function signIn(user: TSignInSchema) {
 
     return data
 }
+
+export async function getUsers() {
+    const { data } = await API.get("/users/get-users")
+
+    return data
+}

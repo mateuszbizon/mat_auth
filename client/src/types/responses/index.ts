@@ -1,3 +1,5 @@
+import { TUser } from "..";
+
 export type TMainError = {
     message: string;
     messageCode: string;
@@ -11,4 +13,8 @@ export type TSignInResponse = {
         name: string;
         username: string;
     }
+}
+
+export type TGetUsers = {
+    users: TUser[]
 }
