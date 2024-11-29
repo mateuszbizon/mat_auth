@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NO_WHITESPACE_REGEX = exports.EMAIL_MESSAGE = exports.PASSWORD_LENGTH_MESSAGE = exports.PASSWORD_MIN_LENGTH = exports.USERNAME_WHITESPACE_MESSAGE = exports.USERNAME_LENGTH_MESSAGE = exports.USERNAME_MAX_LENGTH = exports.USERNAME_MIN_LENGTH = exports.USER_NAME_LENGTH_MESSAGE = exports.USER_NAME_MIN_LENGTH = void 0;
+exports.USER_NAME_MIN_LENGTH = 1;
+exports.USER_NAME_LENGTH_MESSAGE = "Name length can't be empty";
+exports.USERNAME_MIN_LENGTH = 1;
+exports.USERNAME_MAX_LENGTH = 5;
+exports.USERNAME_LENGTH_MESSAGE = `Length of username must be between ${exports.USERNAME_MIN_LENGTH} and ${exports.USERNAME_MAX_LENGTH}`;
+exports.USERNAME_WHITESPACE_MESSAGE = "Username can't include any whitespaces";
+exports.PASSWORD_MIN_LENGTH = 5;
+exports.PASSWORD_LENGTH_MESSAGE = `Password length must be minimum ${exports.PASSWORD_MIN_LENGTH}`;
+exports.EMAIL_MESSAGE = "Invalid email";
+exports.NO_WHITESPACE_REGEX = /\s/;
