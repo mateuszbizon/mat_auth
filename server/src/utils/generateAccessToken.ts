@@ -5,5 +5,5 @@ import { TAccessTokenPayload } from "../types";
 export default function generateAccessToken({ id }: TAccessTokenPayload) {
     return jwt.sign({
         id
-    }, ACCESS_TOKEN, { expiresIn: "1h" })
+    }, ACCESS_TOKEN, { expiresIn: "1m" })
 }

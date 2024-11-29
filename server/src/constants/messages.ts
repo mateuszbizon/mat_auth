@@ -11,5 +11,8 @@ export const MESSAGES = {
     },
     database: {
         databaseFail: "Database problem"
+    },
+    forbidden: {
+        notAuthorized: "Unauthorized"
     }
 }
