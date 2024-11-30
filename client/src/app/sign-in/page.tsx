@@ -1,4 +1,7 @@
+"use client"
+
 import SignInForm from '@/components/forms/SignInForm'
+import publicRoute from '@/components/publicRoute'
 import React from 'react'
 
 function SignInPage() {
@@ -10,4 +13,4 @@ function SignInPage() {
   )
 }
 
-export default SignInPage
+export default publicRoute(SignInPage)

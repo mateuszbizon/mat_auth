@@ -7,7 +7,7 @@ import React, { createContext, PropsWithChildren, useContext, useEffect, useLayo
 
 type TAuthContext = {
     userData: TUser | null;
-    isSignedIn: boolean;
+    isSignedIn: boolean | null;
 }
 
 const AuthContext = createContext<TAuthContext>({
@@ -22,15 +22,18 @@ export function useAuthContext() {
 function AuthContextProvider({ children }: PropsWithChildren) {
     const [userData, setUserData] = useState<TUser | null>(null)
     const [token, setToken] = useState<string | null>(null)
+    const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null)
 
     function saveUser(data: TSignInResponse) {
         setToken(data.token)
         setUserData(data.user)
+        setIsSignedIn(true)
     }
 
     function clearUser() {
         setToken(null)
         setUserData(null)
+        setIsSignedIn(false)
     }
 
     useEffect(() => {
@@ -90,7 +93,7 @@ function AuthContextProvider({ children }: PropsWithChildren) {
 
     const value: TAuthContext = {
         userData,
-        isSignedIn: token ? true : false
+        isSignedIn
     }
 
   return (

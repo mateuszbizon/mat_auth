@@ -1,4 +1,7 @@
+"use client"
+
 import SignUpForm from '@/components/forms/SignUpForm'
+import publicRoute from '@/components/publicRoute'
 import React from 'react'
 
 function SignUpPage() {
@@ -10,4 +13,4 @@ function SignUpPage() {
   )
 }
 
-export default SignUpPage
+export default publicRoute(SignUpPage)

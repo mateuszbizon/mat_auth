@@ -1,5 +1,6 @@
 "use client"
 
+import protectRoute from '@/components/protectRoute'
 import { Button } from '@/components/ui/button'
 import useGetUsers from '@/hooks/services/users/useGetUsers'
 import { AppDispatch, RootState } from '@/lib/store'
@@ -53,4 +54,4 @@ function DashboardPage() {
   )
 }
 
-export default DashboardPage
+export default protectRoute(DashboardPage)
