@@ -1,3 +1,4 @@
+import { useAuthContext } from '@/components/context/AuthContext'
 import { MESSAGES } from '@/constants/messages'
 import { signIn } from '@/lib/services/userServices'
 import getMessageCodes from '@/lib/utils/getMessageCodes'
@@ -8,10 +9,12 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
 function useSignIn() {
+    const { saveUser } = useAuthContext()
     const router = useRouter()
     const { mutate: handleSignIn, isPending } = useMutation({
         mutationFn: signIn,
         onSuccess: (data: TSignInResponse) => {
+            saveUser(data)
             router.push("/dashboard")
         },
         onError: (error: AxiosError<TMainError>) => {

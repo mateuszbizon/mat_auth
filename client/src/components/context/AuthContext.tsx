@@ -2,17 +2,20 @@ import { API, CustomAxiosRequestConfig } from '@/lib/services'
 import { getToken } from '@/lib/services/authServices'
 import { TUser } from '@/types'
 import { TSignInResponse } from '@/types/responses'
-import { InternalAxiosRequestConfig } from 'axios'
 import React, { createContext, PropsWithChildren, useContext, useEffect, useLayoutEffect, useState } from 'react'
 
 type TAuthContext = {
     userData: TUser | null;
     isSignedIn: boolean | null;
+    saveUser: (data: TSignInResponse) => void;
+    clearUser: () => void;
 }
 
 const AuthContext = createContext<TAuthContext>({
     userData: null,
     isSignedIn: false,
+    saveUser: () => {},
+    clearUser: () => {},
 })
 
 export function useAuthContext() {
@@ -93,7 +96,9 @@ function AuthContextProvider({ children }: PropsWithChildren) {
 
     const value: TAuthContext = {
         userData,
-        isSignedIn
+        isSignedIn,
+        saveUser,
+        clearUser,
     }
 
   return (
